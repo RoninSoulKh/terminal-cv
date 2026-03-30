@@ -1,5 +1,5 @@
 // --- 1. Анімація друкарської машинки (Hero Section) ---
-const textArray = ["Junior SysAdmin.", "DevOps enthusiast.", "Python & Kotlin scripter."];
+const textArray = ["Вирішую технічні задачі.", "Автоматизую рутину на Python.", "Постійно навчаюсь новому.", "Розумію архітектуру систем."];
 let textIndex = 0;
 let charIndex = 0;
 const typewriterElement = document.getElementById("typewriter");
@@ -10,7 +10,7 @@ function type() {
         charIndex++;
         setTimeout(type, 100);
     } else {
-        setTimeout(erase, 2000); // Пауза перед стиранням
+        setTimeout(erase, 2000); 
     }
 }
 
@@ -21,13 +21,11 @@ function erase() {
         setTimeout(erase, 50);
     } else {
         textIndex = (textIndex + 1) % textArray.length;
-        setTimeout(type, 500); // Пауза перед друком нового слова
+        setTimeout(type, 500); 
     }
 }
 
-// Запускаємо анімацію після завантаження сторінки
 document.addEventListener("DOMContentLoaded", () => setTimeout(type, 1000));
-
 
 // --- 2. Логіка Модального Вікна Терміналу ---
 const modal = document.getElementById('terminal-modal');
@@ -35,25 +33,22 @@ const termInput = document.getElementById('command-input');
 
 function openTerminal() {
     modal.classList.add('active');
-    setTimeout(() => termInput.focus(), 100); // Фокус на інпут після відкриття
+    setTimeout(() => termInput.focus(), 100); 
 }
 
 function closeTerminal() {
     modal.classList.remove('active');
 }
 
-// Закриття кліком по фону
 function closeTerminalOutside(e) {
     if (e.target === modal) closeTerminal();
 }
 
-// Закриття клавішею Escape
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
         closeTerminal();
     }
 });
-
 
 // --- 3. Логіка Обробки Команд (Bash Terminal) ---
 const outputDiv = document.getElementById('output');
@@ -62,65 +57,65 @@ const terminalBody = document.getElementById('terminal-body');
 let commandHistory = [];
 let historyIndex = -1;
 
-// Словник відповідей терміналу
 const commands = {
     help: `
         <br>Доступні команди:<br>
-        <span class="highlight">whoami</span>   - Інформація про мене та умови<br>
+        <span class="highlight">whoami</span>   - Про мене та мої цілі<br>
         <span class="highlight">skills</span>   - Мій технічний стек<br>
-        <span class="highlight">projects</span> - Інфраструктура та проєкти<br>
+        <span class="highlight">projects</span> - Інфраструктура, боти та автоматизація<br>
         <span class="highlight">clear</span>    - Очистити термінал<br>
         <span class="highlight">contact</span>  - Зв'язок зі мною<br>`,
         
     whoami: `
         <br>Ім'я: Влад<br>
-        Роль: Junior SysAdmin / DevOps<br>
         Локація: Харків<br>
-        Умови: Шукаю роботу зі 100% бронюванням. Строго без держсектору. Без використання власного авто.<br>
-        Особливості: Швидко вчуся, розумію архітектуру, використовую ШІ для написання конфігів та автоматизації.<br>`,
+        Освіта: Диплом у сфері електроінженерії та електромеханіки.<br>
+        <br>
+        Фокус: Шукаю цікаву роботу в хорошій компанії, де зможу розвиватися як фахівець. Розглядаю не лише суто IT-напрямок (SysAdmin/DevOps), а й ширші інженерні та технічні посади. IT-навички дозволяють мені ефективно автоматизовувати будь-яку роботу.<br>
+        <br>
+        Особливості: Швидко вчуся, маю фундаментальне розуміння технічних процесів, активно застосовую ШІ для вирішення складних задач.<br>`,
         
     skills: `
-        <br>[ОС]: Linux (Mint/Ubuntu), Windows Server<br>
+        <br>[Інженерія]: Електротехніка, розуміння апаратної частини.<br>
+        [ОС]: Linux (Mint/Ubuntu), Windows Server<br>
         [Інфраструктура]: Active Directory, GPO, Nginx, Docker, IMAP<br>
         [Віртуалізація]: Hyper-V<br>
         [Скриптинг]: Python, Kotlin<br>`,
         
     projects: `
-        <br>1. <span class="highlight">Energy Analytics</span> - Платформа аналітики енергоданих. (Статус: Active, Cloudflare routing)<br>
-        2. <span class="highlight">MappingOP</span> - Backend/Docker інфраструктура. (Статус: Frozen)<br>
-        3. <span class="highlight">Home Lab</span> - Bare-Metal сервер, налаштування бекапів, SSH, моніторинг ресурсів.<br>`,
+        <br>--- ІНФРАСТРУКТУРА ---<br>
+        1. <span class="highlight">Energy Analytics</span> - Платформа аналітики енергоданих. (Cloudflare routing)<br>
+        2. <span class="highlight">Home Lab & MappingOP</span> - Bare-Metal сервер, бекапи, Docker-контейнери.<br>
+        <br>--- АВТОМАТИЗАЦІЯ (PYTHON) ---<br>
+        3. <span class="highlight">Orderbook Telegram Bot</span> - Бот для роботи з даними.<br>
+        4. <span class="highlight">Mail Report Automation</span> - Скрипти для автоматизації поштових звітів.<br>
+        5. <span class="highlight">Excel Report Formatter</span> - Автоматичне форматування та обробка таблиць.<br>`,
         
     contact: `
         <br>Telegram: @твій_юзернейм<br>
         Email: твій@email.com<br>
-        GitHub: github.com/твій_профіль<br>
-        Freelancehunt: посилання_на_профіль<br>`
+        GitHub: github.com/RoninSoulKh<br>
+        Freelancehunt: [Твоє посилання]<br>`
 };
 
-// Функція для виводу тексту в термінал
 function printOutput(text) {
     const newOutput = document.createElement('div');
     newOutput.innerHTML = text;
     outputDiv.appendChild(newOutput);
 }
 
-// Слухач подій для інпуту терміналу
 termInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         const inputCommand = termInput.value.trim().toLowerCase();
         
-        // Зберігаємо в історію, якщо команда не порожня
         if (inputCommand) {
             commandHistory.push(inputCommand);
             historyIndex = commandHistory.length;
         }
         
-        // Друкуємо введену команду
         printOutput(`<br><span class="prompt">vlad@sysadmin:~$</span> ${inputCommand}`);
 
-        // Обробка команд
         if (inputCommand === '') {
-            // Нічого не робимо, просто новий рядок
         } else if (inputCommand === 'clear') {
             outputDiv.innerHTML = '';
         } else if (inputCommand === 'sudo rm -rf /') {
@@ -131,7 +126,6 @@ termInput.addEventListener('keydown', function(e) {
             printOutput(`<br>bash: ${inputCommand}: command not found. Введіть <span class="highlight">help</span>.`);
         }
 
-        // Очищення інпуту та автоскрол донизу
         termInput.value = '';
         terminalBody.scrollTop = terminalBody.scrollHeight;
         
