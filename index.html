@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vlad | SysAdmin & DevOps Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">&gt;_ user@root</div>
+            <div class="nav-links">
+                <a href="#skills">Скіли</a>
+                <a href="#projects">Проєкти</a>
+                <button class="btn-primary" onclick="openTerminal()">_ Bash Резюме</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Системний<br>адміністратор</h1>
+                    <div class="subtitle" id="typewriter"></div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn-outline">Дивитись проєкти</a>
+                        <a href="#" class="link-muted">Завантажити CV (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="tilted-terminal" onclick="openTerminal()" title="Клікніть, щоб відкрити термінал">
+                        <div class="term-header-mini">
+                            <span class="btn red"></span><span class="btn yellow"></span><span class="btn green"></span>
+                        </div>
+                        <div class="term-body-mini">
+                            vlad@portfolio:~$ ./init_cv.sh<br>
+                            > Loading modules... OK<br>
+                            > Mounting skills... OK<br>
+                            vlad@portfolio:~$ <span class="blink">_</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary terminal-btn" onclick="openTerminal()">
+                        >_ Запустити Bash Резюме
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <h2 class="section-title">Технічний стек</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Linux & Інфраструктура</h3>
+                    <p>Адміністрування серверів (Mint/Ubuntu), підняття сервісів з нуля. Робота з Nginx, Docker, поштовими серверами (IMAP).</p>
+                </div>
+                <div class="card">
+                    <h3>Windows Server & AD</h3>
+                    <p>Розгортання Active Directory, управління груповими політиками (GPO), віртуалізація на базі Hyper-V.</p>
+                </div>
+                <div class="card">
+                    <h3>Скриптинг</h3>
+                    <p>Використання Python та Kotlin для автоматизації рутинних завдань. Розуміння архітектури та робота з логами.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="projects">
+            <h2 class="section-title">Проєкти та Home Lab</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Energy Analytics</h3>
+                    <p>Платформа аналітики енергоданих. Працюючий production-проєкт, маршрутизація та захист налаштовані через Cloudflare.</p>
+                </div>
+                <div class="card">
+                    <h3>MappingOP</h3>
+                    <p>Backend-інфраструктура у Docker-контейнерах. Налаштування веб-сервера Nginx. (Проєкт заморожено).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="terminal-modal" onclick="closeTerminalOutside(event)">
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <span class="btn red" onclick="closeTerminal()"></span>
+                <span class="btn yellow" onclick="closeTerminal()"></span>
+                <span class="btn green"></span>
+                <div class="title">vlad@sysadmin:~</div>
+            </div>
+            
+            <div class="terminal-body" id="terminal-body">
+                <div class="output" id="output">
+                    <p class="system-msg">Initiating connection to host...</p>
+                    <p class="system-msg">Authentication successful.</p>
+                    <br>
+                    <p>Вітаю! Введіть <span class="highlight">help</span> для перегляду доступних команд.</p>
+                </div>
+                <div class="input-line">
+                    <span class="prompt">vlad@sysadmin:~$</span>
+                    <input type="text" id="command-input" autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
