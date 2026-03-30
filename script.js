@@ -1,3 +1,4 @@
+// --- Анімація друкарської машинки (Hero Section) ---
 const textArray = ["Вирішую технічні задачі.", "Пишу скрипти на Python.", "Налаштовую сервери.", "Ефективно юзаю ШІ для коду."];
 let textIndex = 0;
 let charIndex = 0;
@@ -24,6 +25,7 @@ function erase() {
     }
 }
 
+// Запуск машинки та іконок після завантаження сторінки
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(type, 1000);
     if (typeof lucide !== 'undefined') {
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// --- Дані для карток проєктів ---
 const projectDetailsData = {
     mappingop: {
         title: "MappingOP v2.1",
@@ -70,6 +73,7 @@ const projectDetailsData = {
     }
 };
 
+// --- Логіка розгортання карток проєктів ---
 const grid = document.getElementById('projects-grid');
 const cards = document.querySelectorAll('.project-card');
 let activePanel = null;
@@ -139,6 +143,7 @@ function closePanel() {
     cards.forEach(c => c.classList.remove('active'));
 }
 
+// --- Логіка Модального Вікна Терміналу ---
 const modal = document.getElementById('terminal-modal');
 const termInput = document.getElementById('command-input');
 
@@ -165,46 +170,73 @@ const terminalBody = document.getElementById('terminal-body');
 let commandHistory = [];
 let historyIndex = -1;
 
+// --- Словник команд терміналу ---
 const commands = {
     help: `
         <br>Доступні команди:<br>
-        <span class="highlight">whoami</span>   - Про мене та мої цілі<br>
-        <span class="highlight">skills</span>   - Мій технічний стек<br>
-        <span class="highlight">projects</span> - Інфраструктура, розробка та автоматизація<br>
-        <span class="highlight">clear</span>    - Очистити термінал<br>
-        <span class="highlight">contact</span>  - Зв'язок зі мною<br>`,
+        <span class="highlight">neofetch</span> - Системна інформація<br>
+        <span class="highlight">whoami</span>   - Про мене та цілі<br>
+        <span class="highlight">ls</span>       - Список файлів проєктів<br>
+        <span class="highlight">skills</span>   - Технічний стек<br>
+        <span class="highlight">matrix</span>   - Ввійти в матрицю<br>
+        <span class="highlight">clear</span>    - Очистити екран<br>
+        <span class="highlight">gui</span>      - Повернутися до сайту<br>`,
         
+    neofetch: `
+        <div style="display: flex; gap: 20px; line-height: 1.2; margin-top: 10px;">
+            <div style="color: var(--accent); font-family: monospace; white-space: pre; font-weight: bold;">
+ ██████╗  ███████╗
+ ██╔══██╗ ██╔════╝
+ ██████╔╝ ███████╗
+ ██╔══██╗ ╚════██║
+ ██║  ██║ ███████║
+ ╚═╝  ╚═╝ ╚══════╝
+            </div>
+            <div>
+                <span class="highlight">vlad@roninsoulkh</span><br>
+                -------------------<br>
+                <span class="highlight">OS:</span> Linux Mint / Ubuntu<br>
+                <span class="highlight">Host:</span> Bare-Metal Server<br>
+                <span class="highlight">Uptime:</span> 25 years<br>
+                <span class="highlight">Shell:</span> bash (Python/AI-enhanced)<br>
+                <span class="highlight">Education:</span> Електроенергетика, електротехніка, електромеханіка<br>
+                <span class="highlight">Location:</span> Kharkiv, UA<br>
+            </div>
+        </div>`,
+
     whoami: `
         <br>Ім'я: Влад<br>
         Локація: Харків<br>
-        Освіта: Диплом у сфері електроінженерії та електромеханіки.<br>
         <br>
-        Фокус: Розглядаю інженерні, системні та IT-позиції. Завдяки розумінню апаратної частини та навичкам програмування здатний автоматизувати складні процеси та підтримувати інфраструктуру.<br>`,
+        Молодший спеціаліст електроенергетик/електромеханік, та планую продовжити навчання. Маю глибокий досвід роботи з даними (енергозбут, білінг, автоматизація звітів на Python Pandas).<br>
+        <br>
+        Понад 3 роки працював торговим представником преміальних брендів (De'Longhi, OPPO). Займався не лише продажами, а й просуванням бренду, проведенням технічних тренінгів для персоналу, онбордингом клієнтів та тестуванням нової техніки до її релізу.<br>
+        <br>
+        Зараз сфокусований на ІТ-інфраструктурі (AD, GPO, Hyper-V, Docker) та розробці скриптів для автоматизації процесів. Шукаю позицію Junior System Administrator / DevOps, де зможу застосувати свої інженерні навички та вміння вирішувати нестандартні задачі.`,
         
+    ls: `
+        <br>
+        <span style="color: #38bdf8;">MappingOP.apk</span>&nbsp;&nbsp;
+        <span style="color: #38bdf8;">Analytics_En/</span>&nbsp;&nbsp;
+        <span style="color: #38bdf8;">Orderbook_Bot/</span>&nbsp;&nbsp;
+        <span style="color: #38bdf8;">Mail_Automation.py</span>&nbsp;&nbsp;
+        <span style="color: #38bdf8;">Excel_Formatter.py</span>`,
+
     skills: `
-        <br>[Інженерія]: Електротехніка, серверне обладнання.<br>
-        [ОС]: Linux (Mint/Ubuntu), Windows Server<br>
-        [Інфраструктура]: Active Directory, GPO, Docker, Cloudflare Zero Trust<br>
-        [Віртуалізація]: Hyper-V<br>
-        [Dev]: Python, Kotlin (Android), Bash<br>`,
+        <br>[Infrastructure]: Docker, Nginx, Cloudflare Zero Trust<br>
+        [Windows]: Active Directory, GPO, Hyper-V<br>
+        [Linux]: Ubuntu/Mint, Bash, SSH, Bare-Metal config<br>
+        [Dev]: Python (Automation), Regex, AI-Assisted Dev`,
         
-    projects: `
-        <br>--- РОЗРОБКА ТА АВТОМАТИЗАЦІЯ ---<br>
-        1. <span class="highlight">MappingOP (Android)</span> - Офлайн-платформа для польових операцій з картографією.<br>
-        2. <span class="highlight">Analytics Platform</span> - Захищена система обробки даних (Zero Trust, DevSecOps).<br>
-        3. <span class="highlight">OrderBook Tools</span> - Аналіз крипто-даних через Telegram та Web-дашборд.<br>
-        4. <span class="highlight">Data Scripts</span> - Утиліти для роботи з IMAP, Excel та Regex.<br>
-        <br>--- ІНФРАСТРУКТУРА ---<br>
-        5. <span class="highlight">Bare-Metal Server</span> - Фізичний сервер для Docker-контейнерів.<br>
-        6. <span class="highlight">Home Lab</span> - Віртуалізація Windows Server (AD, DC01).<br>
-        <br>* Введіть <span class="highlight">clear</span> щоб очистити екран.<br>`,
+    matrix: `
+        <br><span style="color: #10b981;">Wake up, Neo... The Matrix has you... Follow the white rabbit.</span><br>`,
         
     contact: `
         <br>Telegram: @RoninSoulKh<br>
-        Email: vladislav@example.com<br>
-        GitHub: github.com/RoninSoulKh<br>`
+        GitHub: github.com/RoninSoulKh`
 };
 
+// --- Обробник вводу в термінал ---
 function printOutput(text) {
     const newOutput = document.createElement('div');
     newOutput.innerHTML = text;
@@ -212,6 +244,22 @@ function printOutput(text) {
 }
 
 termInput.addEventListener('keydown', function(e) {
+    // --- Логіка автодоповнення (Tab) ---
+    if (e.key === 'Tab') {
+        e.preventDefault(); // Запобігає перемиканню фокусу
+        const currentInput = termInput.value.trim().toLowerCase();
+        
+        if (currentInput) {
+            // Шукаємо всі команди, які починаються з введеного тексту
+            const matchingCommands = Object.keys(commands).filter(cmd => cmd.startsWith(currentInput));
+            
+            if (matchingCommands.length === 1) {
+                // Якщо знайдено лише 1 збіг - доповнюємо
+                termInput.value = matchingCommands[0];
+            }
+        }
+    }
+
     if (e.key === 'Enter') {
         const inputCommand = termInput.value.trim().toLowerCase();
         if (inputCommand) {
@@ -224,6 +272,7 @@ termInput.addEventListener('keydown', function(e) {
         if (inputCommand === '') {} 
         else if (inputCommand === 'clear') { outputDiv.innerHTML = ''; } 
         else if (inputCommand === 'sudo rm -rf /') { printOutput(`<br><span style="color: #ef4444;">Access denied. This incident will be reported.</span>`); } 
+        else if (inputCommand === 'gui') { closeTerminal(); }
         else if (commands[inputCommand]) { printOutput(commands[inputCommand]); } 
         else { printOutput(`<br>bash: ${inputCommand}: command not found. Введіть <span class="highlight">help</span>.`); }
 
@@ -248,6 +297,7 @@ termInput.addEventListener('keydown', function(e) {
     }
 });
 
+// --- Віджет контактів ---
 const contactBtn = document.getElementById('contact-btn');
 const contactMenu = document.getElementById('contact-menu');
 const callBtn = document.getElementById('call-btn');
