@@ -6,6 +6,7 @@
     <title>Vlad | Engineering & Tech Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -22,6 +23,7 @@
 
     <main>
         <section class="hero" id="home">
+            <div class="hero-bg-grid"></div>
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Інженер &<br>Технічний спеціаліст</h1>
@@ -38,9 +40,10 @@
                             <span class="btn red"></span><span class="btn yellow"></span><span class="btn green"></span>
                         </div>
                         <div class="term-body-mini">
-                            vlad@portfolio:~$ ./init_cv.sh<br>
+                            vlad@portfolio:~$ ./init_system.sh<br>
+                            > Booting bare-metal server... OK<br>
                             > Loading engineering modules... OK<br>
-                            > Mounting IT skills... OK<br>
+                            > Compiling projects... OK<br>
                             vlad@portfolio:~$ <span class="blink">_</span>
                         </div>
                     </div>
@@ -55,39 +58,62 @@
             <h2 class="section-title">Технічний профіль</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>⚡ Інженерна база</h3>
-                    <p>Диплом у сфері електроінженерії та електромеханіки. Фундаментальне розуміння роботи систем, обладнання та апаратного забезпечення.</p>
+                 <div class="card-header-icon"><i data-lucide="zap"></i><h3>Інженерна база</h3></div>
+                 <p>Диплом у сфері електроінженерії та електромеханіки. Фундаментальне розуміння апаратної частини, серверного заліза та мереж.</p>
+              </div>
+              <div class="card">
+                  <div class="card-header-icon"><i data-lucide="server"></i><h3>Linux & Bare-Metal</h3></div>
+                   <p>Збірка та налаштування фізичних серверів. Адміністрування Linux (Mint/Ubuntu), Nginx, ізоляція у Docker.</p>
                 </div>
                 <div class="card">
-                    <h3>🐧 Linux & Інфраструктура</h3>
-                    <p>Адміністрування серверів (Mint/Ubuntu), підняття сервісів з нуля. Робота з Nginx, Docker, поштовими серверами (IMAP).</p>
-                </div>
-                <div class="card">
-                    <h3>⚙️ Windows Server & AD</h3>
-                    <p>Розгортання Active Directory, управління груповими політиками (GPO), віртуалізація на базі Hyper-V.</p>
-                </div>
-                <div class="card">
-                    <h3>💻 Скриптинг та ШІ</h3>
-                    <p>Використання Python та Kotlin для автоматизації рутини. Активне використання сучасних ШІ-інструментів для прискорення розробки та написання конфігів.</p>
-                </div>
-            </div>
+                    <div class="card-header-icon"><i data-lucide="cpu"></i><h3>Home Lab (Hyper-V)</h3></div>
+                  <p>Розгортання віртуалізованих інфраструктур. Налаштування Windows Server, Active Directory (DC01), управління GPO.</p>
+              </div>
+              <div class="card">
+                  <div class="card-header-icon"><i data-lucide="terminal"></i><h3>Скриптинг та ШІ</h3></div>
+                   <p>Базове програмування на Python для автоматизації рутини. Активне використання ШІ (AI-assisted coding) для створення складних скриптів та конфігів.</p>
+               </div>
+              <div class="card">
+                   <div class="card-header-icon"><i data-lucide="briefcase"></i><h3>Досвід та Soft Skills</h3></div>
+                  <p>Понад 3.5 роки у продажах світових брендів (DeLonghi, Panasonic). Робота інженером у прифронтовій енергетиці навчила відповідальності та вмінню приймати рішення в критичних ситуаціях.</p>
+               </div>
+           </div>
         </section>
         
         <section class="section" id="projects">
-            <h2 class="section-title">Проєкти та Автоматизація</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>📊 Energy Analytics</h3>
-                    <p>Платформа аналітики енергоданих. Працюючий production-проєкт, маршрутизація та захист налаштовані через Cloudflare.</p>
+            <h2 class="section-title">Проєкти та Інфраструктура</h2>
+            <div class="grid" id="projects-grid">
+                
+                <div class="card project-card" data-project="mappingop">
+                    <div class="card-header-icon"><i data-lucide="map"></i><h3>MappingOP</h3></div>
+                    <p>Android-платформа для офлайн-роботи з картами та масивами даних. Clean Architecture, MVVM.</p>
                 </div>
-                <div class="card">
-                    <h3>🤖 Python Automation</h3>
-                    <p>Написання ботів (Orderbook Telegram Bot) та скриптів для обробки даних (Mail Report Automation, Excel Report Formatter).</p>
+                
+                <div class="card project-card" data-project="analytics">
+                    <div class="card-header-icon"><i data-lucide="shield"></i><h3>Analytics Platform</h3></div>
+                    <p>Захищена веб-платформа. FastAPI, Docker, Cloudflare Zero Trust, вбудована система безпеки (SOC).</p>
                 </div>
-                <div class="card">
-                    <h3>🛠️ Home Lab & MappingOP</h3>
-                    <p>Власний Bare-Metal сервер, бекапи, моніторинг. Розгортання Backend-інфраструктури у Docker-контейнерах.</p>
+
+                <div class="card project-card" data-project="orderbook">
+                    <div class="card-header-icon"><i data-lucide="line-chart"></i><h3>OrderBook Tools</h3></div>
+                    <p>Telegram-бот та веб-дашборд для візуалізації стакана ордерів (Binance). Генерація графіків у реальному часі.</p>
                 </div>
+
+                <div class="card project-card" data-project="mailreport">
+                    <div class="card-header-icon"><i data-lucide="mail"></i><h3>Mail Automation</h3></div>
+                    <p>Утиліта для обробки пошти (IMAP). Автоматичний парсинг даних з листів за допомогою Regex.</p>
+                </div>
+
+                <div class="card project-card" data-project="excelformat">
+                    <div class="card-header-icon"><i data-lucide="file-spreadsheet"></i><h3>Excel Formatter</h3></div>
+                    <p>Скрипт для автоматичного форматування та глибокої обробки об'ємних табличних звітів (Pandas/OpenPyXL).</p>
+                </div>
+
+                <div class="card project-card" data-project="servers">
+                    <div class="card-header-icon"><i data-lucide="hard-drive"></i><h3>Server Infrastructure</h3></div>
+                    <p>Власний Bare-Metal сервер для production-задач та віртуальна Home Lab для тестування ентерпрайз-рішень.</p>
+                </div>
+
             </div>
         </section>
     </main>
@@ -103,7 +129,7 @@
             
             <div class="terminal-body" id="terminal-body">
                 <div class="output" id="output">
-                    <p class="system-msg">Initiating connection to host...</p>
+                    <p class="system-msg">Initiating secure connection...</p>
                     <p class="system-msg">Authentication successful.</p>
                     <br>
                     <p>Вітаю! Введіть <span class="highlight">help</span> для перегляду доступних команд.</p>
@@ -114,6 +140,23 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="contact-widget" id="contact-widget">
+        <div class="contact-menu" id="contact-menu">
+            <a href="https://t.me/user_im_yes" target="_blank" class="contact-item" title="Telegram"><i data-lucide="send"></i></a>
+            <a href="https://linkedin.com/in/vladislav-vakal/" target="_blank" class="contact-item" title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
+    </svg>
+</a>
+            <a href="mailto:vladvakal902@gmail.com" class="contact-item" title="Email"><i data-lucide="mail"></i></a>
+            <a href="#" id="call-btn" class="contact-item" title="Зателефонувати"><i data-lucide="phone"></i></a>
+        </div>
+        <button class="floating-contact-btn" id="contact-btn">
+            <i data-lucide="message-square"></i>
+            <span>_ Зв'язатись</span>
+        </button>
     </div>
 
     <script src="script.js"></script>
