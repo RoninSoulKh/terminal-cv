@@ -184,9 +184,43 @@ nav { display: flex; justify-content: space-between; align-items: center; max-wi
 .terminal-ui .term-body { color: #f8fafc; font-size: 0.95rem; line-height: 1.8; opacity: 0.9; }
 
 @media (max-width: 768px) {
+    .section { padding: 3rem 1rem; }
+    header nav { padding: 1rem; }
+    
+    .hero { padding: 6rem 1rem 2rem; }
+    .hero h1 { font-size: 2rem; }
+    .hero .subtitle { font-size: 0.95rem; height: 3rem; }
+    .hero-buttons { flex-direction: column; width: 100%; gap: 1rem; }
+    .hero-buttons a, .hero-buttons button { width: 100%; text-align: center; justify-content: center; }
+    
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 1.5rem; }
+    
+    .details-panel { padding: 1.5rem 1rem; margin-top: 1rem; }
+    .details-triangle { display: none; }
+    .details-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .details-close { position: absolute; top: 1.5rem; right: 1rem; }
+    
+    .terminal-container { width: 95%; margin-top: -15vh; }
+    .terminal-body { height: 45vh; padding: 15px; font-size: 0.85rem; }
+    #command-input { font-size: 0.85rem; }
+    
+    .contact-widget { bottom: 20px; right: 15px; }
+    .floating-contact-btn { padding: 12px; border-radius: 50%; }
+    .floating-contact-btn span { display: none; }
+    
     .accordion-container { flex-direction: column; height: auto; }
-    .accordion-item { height: 150px; width: 100%; border: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .accordion-item { height: 200px; width: 100%; border: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .accordion-item:hover { flex: none; height: 350px; }
-    .accordion-overlay { opacity: 1; transform: translateY(0); padding: 1rem; }
-    .overlay-content h3 { font-size: 1.2rem; }
+    .accordion-overlay { opacity: 1; transform: translateY(0); padding: 1rem; background: rgba(15, 23, 42, 0.85); }
+    .overlay-content h3 { font-size: 1.2rem; white-space: normal; }
+    .css-ui-mockup { opacity: 0.8; filter: grayscale(20%); }
+    
+    .ecommerce-ui-custom .ecom-grid { flex-direction: column; padding: 15px; align-items: center; }
+    .ecommerce-ui-custom .ecom-card { width: 100%; max-width: 280px; }
+    .ecommerce-ui-custom .ecom-nav { padding: 10px; justify-content: center; flex-wrap: wrap; }
+    .ecommerce-ui-custom .ecom-search { display: none; }
+    .ecommerce-ui-custom .ecom-top { padding: 15px; }
+    
+    .mapping-ui .phone-frame-map { transform: scale(0.85); }
 }
